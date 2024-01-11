@@ -11,9 +11,13 @@ export default async function Post({ params }: { params: { id: string } }) {
   const post = await client.query(api.posts.get, {
     id: params.id as Id<"posts">,
   });
+
   return (
     <main className="mx-auto w-[600px]">
-      <BackButton />
+      <div className="flex items-center border-x">
+        <BackButton />
+        <h1 className="text-l font-bold">Post</h1>
+      </div>
       <Posts posts={post == null ? [] : [post]} />
     </main>
   );

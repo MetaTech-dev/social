@@ -11,7 +11,10 @@ export default function Profile({
 
   return (
     <main className="mx-auto max-w-[600px]">
-      <BackButton />
+      <div className="flex items-center border-x">
+        <BackButton />
+        <h1 className="text-l font-bold">Profile</h1>
+      </div>
       <UserProfile email={decodedEmail} />
       <UserPosts email={decodedEmail} />
     </main>

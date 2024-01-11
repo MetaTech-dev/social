@@ -9,11 +9,12 @@ export const BackButton = () => {
 
   return (
     <Button
-      variant="outline"
+      variant="ghost"
       size="icon"
       onClick={() => router.back()}
       aria-label="Go back to previous page"
       title="Go back to previous page"
+      className="m-1"
     >
       <ArrowLeftIcon className="w-6 h-6" />
     </Button>
