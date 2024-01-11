@@ -1,5 +1,5 @@
-import { BackLink } from "@/app/(common)/BackLink";
-import { Posts } from "@/app/(common)/Posts";
+import { BackButton } from "@/components/BackButton";
+import { Posts } from "@/components/Posts";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { ConvexHttpClient } from "convex/browser";
@@ -12,8 +12,8 @@ export default async function Post({ params }: { params: { id: string } }) {
     id: params.id as Id<"posts">,
   });
   return (
-    <main>
-      <BackLink />
+    <main className="mx-auto w-[600px]">
+      <BackButton />
       <Posts posts={post == null ? [] : [post]} />
     </main>
   );

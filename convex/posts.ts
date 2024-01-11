@@ -20,11 +20,11 @@ export const all = query({
 
 export const forAuthor = query({
   args: {
-    authorUserName: v.string(),
+    authorEmail: v.string(),
     paginationOpts: paginationOptsValidator,
   },
   handler: async (ctx, args) => {
-    const author = await getUser(ctx, args.authorUserName);
+    const author = await getUser(ctx, args.authorEmail);
     if (author === null) {
       return { page: [], isDone: true, continueCursor: "" };
     }
