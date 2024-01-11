@@ -21,9 +21,13 @@ export function HeaderActions() {
             variant="ghost"
             size="icon"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="text-muted-foreground"
           >
-            <SunIcon className="absolute h-6 w-6 scale-100 transition-all dark:scale-0" />
-            <MoonIcon className="absolute h-6 w-6 scale-0 transition-all dark:scale-100" />
+            {theme === "light" ? (
+              <SunIcon className="h-7 w-7" />
+            ) : (
+              <MoonIcon className="h-7 w-7" />
+            )}
             <span className="sr-only">Toggle theme</span>
           </Button>
           {isLoading ? (
