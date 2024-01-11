@@ -5,7 +5,7 @@ import { CHARACTER_LIMIT } from "@/convex/shared";
 import { useMutation, useQuery } from "convex/react";
 import { useStoreUserEffect } from "../../hooks/useStoreUserEffect";
 import Image from "next/image";
-import { AvatarIcon } from "@radix-ui/react-icons";
+import { AvatarIcon, ImageIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
 import * as zod from "zod";
 import { useForm } from "react-hook-form";
@@ -53,8 +53,8 @@ export function Composer() {
     }
   }
   return (
-    <div className="border-r border-l p-4 ">
-      <div className="flex gap-2 items-center pb-2">
+    <div className="border-r border-l p-4 flex gap-2 items-center">
+      <div className="flex flex-col gap-1">
         {user ? (
           <Link href={`/user/${encodeURIComponent(user.email)}`}>
             <Image
@@ -62,18 +62,17 @@ export function Composer() {
               src={user.pictureUrl}
               width={40}
               height={40}
-              className="w-10 h-10 rounded-full"
+              className="rounded-full"
             />
           </Link>
         ) : (
           <AvatarIcon className="w-10 h-10" />
         )}
+        <div className="h-10 w-10" />
+      </div>
+      <div className="flex flex-col flex-1 gap-2">
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="flex-1"
-            id="text-form"
-          >
+          <form onSubmit={form.handleSubmit(onSubmit)} id="text-form">
             <FormField
               control={form.control}
               name="text"
@@ -88,12 +87,16 @@ export function Composer() {
             />
           </form>
         </Form>
-      </div>
-      <div className="flex">
-        <div className="flex-1" />
-        <Button type="submit" form="text-form">
-          Submit
-        </Button>
+        {/* media upload buttons */}
+        <div className="flex gap-1 items-center">
+          <Button variant="ghost" size="icon" className="text-muted-foreground">
+            <ImageIcon className="w-6 h-6" />
+          </Button>
+          <div className="flex-1" />
+          <Button type="submit" form="text-form" variant="outline">
+            Submit
+          </Button>
+        </div>
       </div>
     </div>
   );
