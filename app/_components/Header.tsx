@@ -2,6 +2,7 @@ import Link from "next/link";
 import { HeartIcon } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
 import { HeaderActions } from "./HeaderActions";
+import { buttonVariants } from "@/components/ui/button";
 
 export function Header() {
   const items = [
@@ -15,9 +16,16 @@ export function Header() {
     <header className="border-b">
       <div className="container flex h-12 items-center space-x-4 sm:justify-between sm:space-x-0">
         <div className="flex gap-6 md:gap-10">
-          <Link href="/" className="flex items-center space-x-1">
-            <HeartIcon className="h-6 w-6" />
-            <span className="font-bold text-xl">social</span>
+          <Link
+            href="/"
+            className={buttonVariants({
+              size: "sm",
+              variant: "ghost",
+              className: "hover:animate-pulse",
+            })}
+          >
+            <HeartIcon className="h-6 w-6 mr-1" />
+            <span className="text-xl">social</span>
           </Link>
           {/* {items?.length ? (
             <nav className="flex gap-6">

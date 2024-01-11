@@ -14,7 +14,7 @@ export function Posts(props: { posts: Post[] }) {
 
         return (
           <Link key={post._id} href={`/post/${post._id}`}>
-            <li className="p-4 border-b flex gap-2 items-center transition-all hover:bg-accent">
+            <li className="p-4 border-b flex gap-2 items-center transition-all hover:bg-accent hover:animate-pulse">
               <Link href={`/user/${encodedEmail}`}>
                 <Image
                   alt="profile pic"

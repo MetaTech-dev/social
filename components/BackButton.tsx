@@ -14,7 +14,7 @@ export const BackButton = () => {
       onClick={() => router.back()}
       aria-label="Go back to previous page"
       title="Go back to previous page"
-      className="m-1"
+      className="m-1 hover:animate-pulse"
     >
       <ArrowLeftIcon className="w-6 h-6" />
     </Button>

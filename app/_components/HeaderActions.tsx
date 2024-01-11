@@ -21,7 +21,7 @@ export function HeaderActions() {
             variant="ghost"
             size="icon"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="text-muted-foreground"
+            className="text-muted-foreground hover:animate-pulse"
           >
             {theme === "light" ? (
               <SunIcon className="h-7 w-7" />

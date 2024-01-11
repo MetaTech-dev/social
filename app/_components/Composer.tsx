@@ -88,12 +88,21 @@ export function Composer() {
           </form>
         </Form>
         {/* media upload buttons */}
-        <div className="flex gap-1 items-center">
-          <Button variant="ghost" size="icon" className="text-muted-foreground">
+        <div className="flex gap-1">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="text-muted-foreground  hover:animate-pulse"
+          >
             <ImageIcon className="w-6 h-6" />
           </Button>
           <div className="flex-1" />
-          <Button type="submit" form="text-form" variant="outline">
+          <Button
+            type="submit"
+            form="text-form"
+            variant="outline"
+            className=" hover:animate-pulse"
+          >
             Submit
           </Button>
         </div>
