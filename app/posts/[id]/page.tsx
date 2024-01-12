@@ -1,5 +1,5 @@
 import { BackButton } from "@/components/BackButton";
-import { Posts } from "@/components/Posts";
+import PostCard from "../PostCard";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { ConvexHttpClient } from "convex/browser";
@@ -12,13 +12,15 @@ export default async function Post({ params }: { params: { id: string } }) {
     id: params.id as Id<"posts">,
   });
 
-  return (
+  return post ? (
     <main className="mx-auto w-[600px]">
       <div className="flex items-center border-x border-b">
         <BackButton />
-        <h1 className="text-l font-bold">Post</h1>
+        <h1 className="font-bold">Post</h1>
       </div>
-      <Posts posts={post == null ? [] : [post]} />
+      <PostCard post={post} />
     </main>
+  ) : (
+    <div>Post not found</div>
   );
 }

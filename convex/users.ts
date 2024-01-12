@@ -34,6 +34,8 @@ export const store = mutation({
   },
 });
 
+export type User = NonNullable<Awaited<ReturnType<typeof get>>>;
+
 export const get = query({
   args: {
     email: v.string(),

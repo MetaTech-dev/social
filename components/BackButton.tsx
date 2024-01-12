@@ -10,13 +10,13 @@ export const BackButton = () => {
   return (
     <Button
       variant="ghost"
-      size="icon"
+      size="sm"
       onClick={() => router.back()}
       aria-label="Go back to previous page"
       title="Go back to previous page"
-      className="m-1 hover:animate-pulse"
+      className="hover:animate-pulse px-2"
     >
-      <ArrowLeftIcon className="w-6 h-6" />
+      <ArrowLeftIcon />
     </Button>
   );
 };
