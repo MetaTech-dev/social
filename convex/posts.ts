@@ -52,7 +52,7 @@ export const get = query({
 });
 
 async function enrichPosts(ctx: QueryCtx, posts: Doc<"posts">[]) {
-  return await async.map(posts, (post) => enrichPost(ctx, post));
+  return await async.asyncMap(posts, (post) => enrichPost(ctx, post));
 }
 
 async function enrichPost(ctx: QueryCtx, post: Doc<"posts">) {
