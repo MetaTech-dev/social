@@ -14,7 +14,7 @@ export default async function Post({ params }: { params: { id: string } }) {
 
   return (
     <main className="mx-auto w-[600px]">
-      <div className="flex items-center border-x">
+      <div className="flex items-center border-x border-b">
         <BackButton />
         <h1 className="text-l font-bold">Post</h1>
       </div>

@@ -14,7 +14,9 @@ export function HeaderActions() {
   return (
     <div className="flex items-center justify-end space-x-2">
       {!isAuthenticated && !isLoading ? (
-        <SignInButton afterSignInUrl="/" mode="modal" />
+        <div className="pr-1">
+          <SignInButton afterSignInUrl="/" mode="modal" />
+        </div>
       ) : (
         <>
           <Button
@@ -33,7 +35,9 @@ export function HeaderActions() {
           {isLoading ? (
             <AvatarIcon className="w-8 h-8" />
           ) : (
-            <UserButton afterSignOutUrl="/" />
+            <div className="pr-1">
+              <UserButton afterSignOutUrl="/" />
+            </div>
           )}
         </>
       )}

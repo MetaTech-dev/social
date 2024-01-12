@@ -13,15 +13,15 @@ export function Header() {
     },
   ];
   return (
-    <header className="border-b">
-      <div className="container flex h-12 items-center space-x-4 sm:justify-between sm:space-x-0">
+    <header className="border-x border-b">
+      <div className="px-4 flex h-12 items-center space-x-4 sm:justify-between sm:space-x-0">
         <div className="flex gap-6 md:gap-10">
           <Link
             href="/"
             className={buttonVariants({
               size: "sm",
               variant: "ghost",
-              className: "hover:animate-pulse",
+              className: "hover:animate-pulse px-1 py-1",
             })}
           >
             <HeartIcon className="h-6 w-6 mr-1" />

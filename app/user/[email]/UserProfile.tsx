@@ -12,7 +12,7 @@ export function UserProfile({ email }: { email: string }) {
   const user = useQuery(api.users.get, { email });
   console.log(user);
   return user == null ? null : (
-    <div className="border-x border-t p-6 flex">
+    <div className="border-x border-b p-6 flex">
       <Image
         src={user.pictureUrl}
         alt="profile pic"

@@ -53,7 +53,7 @@ export function Composer() {
     }
   }
   return (
-    <div className="border-r border-l p-4 flex gap-2 items-center">
+    <div className="border-x border-b p-4 flex gap-2 items-center">
       <div className="flex flex-col gap-1">
         {user ? (
           <Link href={`/user/${encodeURIComponent(user.email)}`}>
