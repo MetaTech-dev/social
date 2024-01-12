@@ -21,7 +21,7 @@ export function Header() {
             className={buttonVariants({
               size: "sm",
               variant: "ghost",
-              className: "hover:animate-pulse px-1 py-1",
+              className: "hover:animate-pulse !px-1 !py-1",
             })}
           >
             <HeartIcon className="h-6 w-6 mr-1" />
