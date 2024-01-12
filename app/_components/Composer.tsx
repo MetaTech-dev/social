@@ -62,7 +62,7 @@ export function Composer() {
               src={user.pictureUrl}
               width={40}
               height={40}
-              className="rounded-full"
+              className="rounded-full h-10 w-10"
             />
           </Link>
         ) : (
