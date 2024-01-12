@@ -3,6 +3,7 @@ import { HeartIcon } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
 import { HeaderActions } from "./HeaderActions";
 import { buttonVariants } from "@/components/ui/button";
+import Image from "next/image";
 
 export function Header() {
   const items = [
@@ -24,7 +25,13 @@ export function Header() {
               className: "hover:animate-pulse !px-1 !py-1",
             })}
           >
-            <HeartIcon className="h-6 w-6 mr-1" />
+            <Image
+              src="/images/apple-touch-icon.png"
+              alt="logo"
+              width={24}
+              height={24}
+              className="h-6 w-6 mr-1"
+            />
             <span className="text-xl">social</span>
           </Link>
           {/* {items?.length ? (
