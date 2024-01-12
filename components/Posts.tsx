@@ -17,9 +17,9 @@ export function Posts(props: { posts: Post[] }) {
           const encodedEmail = encodeURIComponent(post.author.email);
 
           return (
-            <Link key={post._id} href={`/post/${post._id}`}>
+            <Link key={post._id} href={`/posts/${post._id}`}>
               <li className="p-4 border-b border-x flex gap-2 items-center transition-all hover:bg-accent hover:animate-pulse">
-                <Link href={`/user/${encodedEmail}`}>
+                <Link href={`/users/${encodedEmail}`}>
                   <Image
                     alt="profile pic"
                     src={post.author.pictureUrl}
@@ -31,7 +31,7 @@ export function Posts(props: { posts: Post[] }) {
 
                 <div className="flex flex-col">
                   <div className="flex gap-2 items-center">
-                    <Link href={`/user/${encodedEmail}`}>
+                    <Link href={`/users/${encodedEmail}`}>
                       <span className="font-bold">{post.author.name}</span>
                     </Link>
                     <span className="text-slate-600 text-sm">

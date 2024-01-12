@@ -1,5 +1,6 @@
 import { v } from "convex/values";
 import { QueryCtx, mutation, query } from "./_generated/server";
+import { paginationOptsValidator } from "convex/server";
 
 export const store = mutation({
   args: {},
@@ -42,6 +43,18 @@ export const get = query({
   },
 });
 
+export const all = query({
+  args: { paginationOpts: paginationOptsValidator },
+  handler: async (ctx, args) => {
+    const result = await ctx.db
+      .query("users")
+      .order("desc")
+      .paginate(args.paginationOpts);
+
+    return result;
+  },
+});
+
 export const getCurrentUser = query({
   args: {},
   handler: async (ctx) => {
@@ -58,4 +71,8 @@ export async function getUser(ctx: QueryCtx, email: string) {
     .query("users")
     .withIndex("byEmail", (q) => q.eq("email", email))
     .unique();
+}
+
+export async function list(ctx: QueryCtx) {
+  return await ctx.db.query("users");
 }

@@ -1,6 +1,6 @@
 import { BackButton } from "@/components/BackButton";
-import { UserPosts } from "./UserPosts";
-import { UserProfile } from "./UserProfile";
+import { UserPosts } from "../_components/UserPosts";
+import { UserProfile } from "../_components/UserProfile";
 
 export default function Profile({
   params: { email },

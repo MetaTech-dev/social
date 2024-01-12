@@ -10,7 +10,7 @@ dayjs.extend(relativeTime);
 
 export function UserProfile({ email }: { email: string }) {
   const user = useQuery(api.users.get, { email });
-  console.log(user);
+
   return user == null ? null : (
     <div className="border-x border-b p-6 flex">
       <Image
@@ -18,7 +18,7 @@ export function UserProfile({ email }: { email: string }) {
         alt="profile pic"
         width={80}
         height={80}
-        className="w-20 h-20 rounded-full"
+        className="rounded-full"
       />
       <div className="flex flex-col justify-center pl-2">
         <h1 className="font-bold text-2xl">{user.name}</h1>

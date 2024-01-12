@@ -41,7 +41,6 @@ export function Composer() {
   });
 
   async function onSubmit(values: zod.infer<typeof formSchema>) {
-    console.log(values);
     try {
       await createPost({ ...values, authorId: userId! });
       form.reset();
@@ -56,7 +55,7 @@ export function Composer() {
     <div className="border-x border-b p-4 flex gap-2 items-center">
       <div className="flex flex-col gap-1">
         {user ? (
-          <Link href={`/user/${encodeURIComponent(user.email)}`}>
+          <Link href={`/users/${encodeURIComponent(user.email)}`}>
             <Image
               alt="profile pic"
               src={user.pictureUrl}

@@ -30,7 +30,7 @@ export function Header() {
               alt="logo"
               width={24}
               height={24}
-              className="h-6 w-6 mr-1"
+              className="mr-1"
             />
             <span className="text-xl">social</span>
           </Link>
