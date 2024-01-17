@@ -7,7 +7,7 @@ export const store = mutation({
   handler: async (ctx) => {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) {
-      throw new Error("Called storeUser without authentication present");
+      throw new Error("No identity found");
     }
     const user = await getUser(ctx, identity.email!);
     if (user !== null) {
