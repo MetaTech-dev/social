@@ -6,7 +6,7 @@ import { Doc } from "./_generated/dataModel";
 import { getUser } from "./users";
 import { CHARACTER_LIMIT } from "./shared";
 
-export const all = query({
+export const list = query({
   args: { paginationOpts: paginationOptsValidator },
   handler: async (ctx, args) => {
     const result = await ctx.db
@@ -18,7 +18,7 @@ export const all = query({
   },
 });
 
-export const forAuthor = query({
+export const listByAuthorEmail = query({
   args: {
     authorEmail: v.string(),
     paginationOpts: paginationOptsValidator,
@@ -40,7 +40,7 @@ export const forAuthor = query({
 
 export type Post = NonNullable<Awaited<ReturnType<typeof enrichPost>>>;
 
-export const get = query({
+export const getOneById = query({
   args: { id: v.id("posts") },
   handler: async (ctx, args) => {
     const post = await ctx.db.get(args.id);
@@ -48,6 +48,24 @@ export const get = query({
       return null;
     }
     return await enrichPost(ctx, post);
+  },
+});
+
+export const listByParentPostId = query({
+  args: {
+    parentPostId: v.id("posts"),
+    paginationOpts: paginationOptsValidator,
+  },
+  handler: async (ctx, args) => {
+    const result = await ctx.db
+      .query("posts")
+      .withIndex("byParentPostId", (q) =>
+        q.eq("parentPostId", args.parentPostId)
+      )
+      .order("desc")
+      .paginate(args.paginationOpts);
+
+    return { ...result, page: await enrichPosts(ctx, result.page) };
   },
 });
 
@@ -64,7 +82,12 @@ async function enrichPost(ctx: QueryCtx, post: Doc<"posts">) {
 }
 
 export const create = mutation({
-  args: { authorId: v.id("users"), text: v.string() },
+  args: {
+    authorId: v.id("users"),
+    text: v.string(),
+    parentPostId: v.optional(v.id("posts")),
+    imageStorageId: v.optional(v.id("_storage")),
+  },
   handler: async (ctx, { text, authorId }) => {
     if (text.length <= 0 || text.length > CHARACTER_LIMIT) {
       throw new Error("Message is too damn long! (or empty)");

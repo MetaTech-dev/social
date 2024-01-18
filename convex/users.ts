@@ -34,9 +34,9 @@ export const store = mutation({
   },
 });
 
-export type User = NonNullable<Awaited<ReturnType<typeof get>>>;
+export type User = NonNullable<Awaited<ReturnType<typeof getOneByEmail>>>;
 
-export const get = query({
+export const getOneByEmail = query({
   args: {
     email: v.string(),
   },
@@ -45,7 +45,7 @@ export const get = query({
   },
 });
 
-export const all = query({
+export const list = query({
   args: { paginationOpts: paginationOptsValidator },
   handler: async (ctx, args) => {
     const result = await ctx.db
@@ -73,8 +73,4 @@ export async function getUser(ctx: QueryCtx, email: string) {
     .query("users")
     .withIndex("byEmail", (q) => q.eq("email", email))
     .unique();
-}
-
-export async function list(ctx: QueryCtx) {
-  return await ctx.db.query("users");
 }

@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main className=" max-w-[600px] mx-auto">
       <SignInOrComposer />
-      <PostScroll query={api.posts.all} args={{}} />
+      <PostScroll query={api.posts.list} args={{}} />
     </main>
   );
 }

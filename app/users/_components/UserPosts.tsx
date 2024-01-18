@@ -5,6 +5,9 @@ import { PostScroll } from "@/app/posts/PostScroll";
 
 export function UserPosts({ email }: { email: string }) {
   return (
-    <PostScroll query={api.posts.forAuthor} args={{ authorEmail: email }} />
+    <PostScroll
+      query={api.posts.listByAuthorEmail}
+      args={{ authorEmail: email }}
+    />
   );
 }

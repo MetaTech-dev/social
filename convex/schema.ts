@@ -11,5 +11,12 @@ export default defineSchema({
   posts: defineTable({
     authorId: v.id("users"),
     text: v.string(),
-  }).index("byAuthorId", ["authorId"]),
+    parentPostId: v.optional(v.id("posts")),
+    imageStorageId: v.optional(v.id("_storage")),
+  })
+    .index("byAuthorId", ["authorId"])
+    .index("byParentPostId", ["parentPostId"]),
+  files: defineTable({
+    storageId: v.id("_storage"),
+  }).index("byStorageId", ["storageId"]),
 });

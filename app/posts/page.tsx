@@ -7,7 +7,7 @@ export default function Posts() {
   return (
     <main className=" max-w-[600px] mx-auto">
       {/* TODO: add a search */}
-      <PostScroll query={api.posts.all} args={{}} />
+      <PostScroll query={api.posts.list} args={{}} />
     </main>
   );
 }
