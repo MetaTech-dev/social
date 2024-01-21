@@ -11,7 +11,7 @@ export default function Profile({
   params: { email: string };
 }) {
   const decodedEmail = decodeURIComponent(email);
-  const user = useQuery(api.users.get, { email: decodedEmail });
+  const user = useQuery(api.users.getOneByEmail, { email: decodedEmail });
   return (
     <main className="mx-auto max-w-[600px]">
       <div className="flex items-center border-x border-b">
