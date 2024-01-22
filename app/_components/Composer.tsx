@@ -22,6 +22,7 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { useState } from "react";
 import { ImageUpload } from "./ImageUpload";
+import { Id } from "@/convex/_generated/dataModel";
 
 export function Composer() {
   const userId = useStoreUserEffect();
@@ -43,7 +44,11 @@ export function Composer() {
 
   async function onSubmit(values: zod.infer<typeof formSchema>) {
     try {
-      await createPost({ ...values, authorId: userId! });
+      await createPost({
+        ...values,
+        authorId: userId!,
+        imageStorageId: values.imageStorageId as Id<"_storage">,
+      });
       form.reset();
     } catch (e) {
       form.setError("text", {
