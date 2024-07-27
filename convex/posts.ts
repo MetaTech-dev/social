@@ -74,11 +74,21 @@ async function enrichPosts(ctx: QueryCtx, posts: Doc<"posts">[]) {
 }
 
 async function enrichPost(ctx: QueryCtx, post: Doc<"posts">) {
+  let imageUrl;
   const author = await ctx.db.get(post.authorId);
   if (author === null) {
-    return null;
+    throw new Error("Author not found");
   }
-  return { ...post, author };
+  if (post.imageStorageId) {
+    imageUrl = await ctx.storage.getUrl(post.imageStorageId);
+  }
+
+  const likesOnPosts = await ctx.db
+    .query("likesOnPosts")
+    .withIndex("byPostId", (q) => q.eq("postId", post._id))
+    .collect();
+
+  return { ...post, author, imageUrl, numLikes: likesOnPosts.length };
 }
 
 export const create = mutation({
@@ -88,7 +98,7 @@ export const create = mutation({
     parentPostId: v.optional(v.id("posts")),
     imageStorageId: v.optional(v.id("_storage")),
   },
-  handler: async (ctx, { text, authorId }) => {
+  handler: async (ctx, { text, authorId, ...restPost }) => {
     if (text.length <= 0 || text.length > CHARACTER_LIMIT) {
       throw new Error("Message is too damn long! (or empty)");
     }
@@ -108,7 +118,7 @@ export const create = mutation({
       throw new Error("Too fast, slow down!");
     }
 
-    await ctx.db.insert("posts", { authorId, text });
+    await ctx.db.insert("posts", { authorId, text, ...restPost });
     // Instead of computing the number of tweets when a profile
     // is loaded, we "denormalize" the data and increment
     // a counter - this is safe thanks to Convex's ACID properties!

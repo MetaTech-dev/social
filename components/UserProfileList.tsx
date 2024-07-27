@@ -6,9 +6,9 @@ import {
   usePaginatedQuery,
 } from "convex/react";
 import { useEffect } from "react";
-import { PostCards } from "./PostCards";
+import { UserProfile } from "./UserProfile";
 
-export function PostScroll<Query extends PaginatedQueryReference>({
+export function UserProfileList<Query extends PaginatedQueryReference>({
   query,
   args,
 }: {
@@ -16,7 +16,7 @@ export function PostScroll<Query extends PaginatedQueryReference>({
   args: PaginatedQueryArgs<Query>;
 }) {
   const {
-    results: posts,
+    results: users,
     status,
     loadMore,
   } = usePaginatedQuery(query, args, { initialNumItems: 5 });
@@ -35,5 +35,13 @@ export function PostScroll<Query extends PaginatedQueryReference>({
     return () => document.removeEventListener("scroll", handleScroll);
   }, [status, loadMore]);
 
-  return <PostCards posts={posts} />;
+  return (
+    <ul>
+      {users.map((user) => (
+        <li key={user.email}>
+          <UserProfile user={user} />
+        </li>
+      ))}
+    </ul>
+  );
 }

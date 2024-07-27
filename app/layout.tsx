@@ -1,9 +1,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import ConvexClientProvider from "./_components/ConvexClientProvider";
-import { ThemeProvider } from "./_components/ThemeProvider";
-import { Header } from "./_components/Header";
+import { Header } from "@/components/Header";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { Providers } from "./Providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,17 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <ConvexClientProvider>
-            <Header />
-            {children}
-          </ConvexClientProvider>
-        </ThemeProvider>
+        <Providers>
+          <Header />
+          <Breadcrumbs />
+          {children}
+        </Providers>
       </body>
     </html>
   );
