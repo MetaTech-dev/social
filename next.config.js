@@ -8,7 +8,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "tough-bobcat-720.convex.cloud",
+        hostname: process.env.NEXT_PUBLIC_CONVEX_HOSTNAME,
       },
       {
         protocol: "https",
